@@ -6,6 +6,7 @@
   import AlbumList from 'src/modules/list/components/AlbumList.svelte';
   import Header from 'src/components/Header.svelte';
   import { MetaTags } from 'svelte-meta-tags';
+  import { BASE_URL, PAGE_URL } from 'src/constants/hosting';
 
   let query;
   let sortByValue;
@@ -46,6 +47,12 @@
   title={`Adrian's Music Collection | Page ${currentPage}`}
   description="Adrian's Music Collection is a website containing the entire CD and vinyl collection of Adrian Bece (codeadrian.github.io)."
   openGraph={{
+    url: `${PAGE_URL}/${currentPage}`,
+    images: [
+      {
+        url: `${BASE_URL}/default.jpg`,
+      },
+    ],
     type: 'website',
     title: `Adrian's Music Collection | Page ${currentPage}`,
     description:

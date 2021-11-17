@@ -20,6 +20,7 @@
   import { activePage } from 'src/stores/activePage';
   import Header from 'src/components/Header.svelte';
   import { MetaTags } from 'svelte-meta-tags';
+  import { ALBUM_URL } from 'src/constants/hosting';
 
   export let album;
 
@@ -38,6 +39,7 @@
   <MetaTags
     openGraph={{
       site_name: "Adrian's Music Collection",
+      url: `${ALBUM_URL}/${album.id}`,
       images: [{ url: album.images[0].resource_url }],
       title: `${album.artists_sort?.replace(/\(.\d?\)/, '')} - ${
         album.title

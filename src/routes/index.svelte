@@ -5,6 +5,7 @@
   import { fetchAlbums } from 'src/modules/list/services/fetchAlbums';
   import { sortBy, sortDirection } from 'src/stores/sort';
   import { onDestroy } from 'svelte';
+  import { BASE_URL } from 'src/constants/hosting';
 
   let sortByValue;
   let sortDirectionValue;
@@ -34,6 +35,12 @@
   openGraph={{
     type: 'website',
     title: `Adrian's Music Collection`,
+    url: BASE_URL,
+    images: [
+      {
+        url: `${BASE_URL}/default.jpg`,
+      },
+    ],
     description:
       "Adrian's Music Collection is a website containing the entire CD and vinyl collection of Adrian Bece (codeadrian.github.io).",
     site_name: "Adrian's Music Collection",
