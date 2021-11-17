@@ -35,6 +35,7 @@
   "type": "module",
   "dependencies": {
     "fs": "^0.0.1-security",
+    "html-minifier": "^4.0.0",
     "svelte-meta-tags": "^2.1.0"
   }
 }
