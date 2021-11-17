@@ -19,8 +19,6 @@
   export let notes = '';
   export let id = '';
 
-  export let isLoading = false;
-
   const hasVideo = Boolean(videos.length);
   const videoId = hasVideo && videos[0].uri.split('v=')[1];
 
@@ -32,7 +30,7 @@
   ].filter((item) => !!item);
 </script>
 
-<section class="album" class:album--loading={isLoading}>
+<section class="album">
   <aside class="album__summary">
     <figure>
       <Gallery {images} />
@@ -291,24 +289,5 @@
       max-width: var(--container-small);
       margin-left: auto;
     }
-  }
-
-  .album--loading dt,
-  .album--loading dd {
-    color: transparent;
-    word-break: break-word;
-    background-color: var(--color-gray-6);
-  }
-
-  .album--loading dd::after {
-    content: 'Loading...';
-  }
-
-  .album--loading .album__section--long dd {
-    min-height: 320px;
-  }
-
-  .album--loading figure {
-    background-color: var(--color-gray-6);
   }
 </style>

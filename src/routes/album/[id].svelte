@@ -1,81 +1,85 @@
+<script context="module">
+  export async function load({
+    page: {
+      params: { id },
+    },
+  }) {
+    const album = await fetchDetails(id);
+    return {
+      props: {
+        album,
+      },
+    };
+  }
+</script>
+
 <script>
   import Album from 'src/modules/details/components/Album.svelte';
-  import { page } from '$app/stores';
   import { fetchDetails } from 'src/modules/details/services/fetchDetails';
   import { onDestroy } from 'svelte';
   import { activePage } from 'src/stores/activePage';
   import Header from 'src/components/Header.svelte';
   import { MetaTags } from 'svelte-meta-tags';
 
-  let album = {};
-  let currentPage;
+  export let album;
 
-  let urlUnsub = page.subscribe(({ params: { id } }) => {
-    album = fetchDetails(id);
-  });
+  let currentPage;
 
   let pageUnsub = activePage.subscribe((value) => (currentPage = value));
 
   onDestroy(() => {
     pageUnsub();
-    urlUnsub();
   });
 </script>
 
 <Header href={currentPage > 1 ? `/page/${currentPage}` : '/'} />
 
-{#await album then data}
-  {#key data.id}
-    <MetaTags
-      openGraph={{
-        site_name: "Adrian's Music Collection",
-        images: [{ url: data.images[0].resource_url }],
-        title: `${data.artists_sort?.replace(/\(.\d?\)/, '')} - ${
-          data.title
-        } | Adrian's Music Collection`,
-        description: `${data.formats.map(
-          ({ name }) => name,
-        )} from Adrian Bece's personal collection. This is "${
-          data.title
-        }" album by ${data.artists_sort?.replace(
-          /\(.\d?\)/,
-          '',
-        )}. This version of the ${data.formats.map(
-          ({ name }) => name,
-        )} has been released on ${data.year || 'an unknown date'} in ${
-          data.country || 'all regions of the world'
-        }. Genre(s): ${data.styles?.join(', ')}`,
-      }}
-      title={`${data.artists_sort?.replace(/\(.\d?\)/, '')} - ${
-        data.title
-      } | Adrian's Music Collection`}
-      description={`${data.formats.map(
+{#key album.id}
+  <MetaTags
+    openGraph={{
+      site_name: "Adrian's Music Collection",
+      images: [{ url: album.images[0].resource_url }],
+      title: `${album.artists_sort?.replace(/\(.\d?\)/, '')} - ${
+        album.title
+      } | Adrian's Music Collection`,
+      description: `${album.formats.map(
         ({ name }) => name,
       )} from Adrian Bece's personal collection. This is "${
-        data.title
-      }" album by ${data.artists_sort?.replace(
+        album.title
+      }" album by ${album.artists_sort?.replace(
         /\(.\d?\)/,
         '',
-      )}. This version of the ${data.formats.map(
+      )}. This version of the ${album.formats.map(
         ({ name }) => name,
-      )} has been released on ${data.year || 'an unknown date'} in ${
-        data.country || 'all regions of the world'
-      }. Genre(s): ${data.styles?.join(', ')}`}
-      twitter={{
-        cardType: 'summary_large_image',
-        handle: '@AdrianBeceDev',
-      }}
-      facebook={{
-        appId: '298638565596264',
-      }}
-    />
-  {/key}
-{/await}
+      )} has been released on ${album.year || 'an unknown date'} in ${
+        album.country || 'all regions of the world'
+      }. Genre(s): ${album.styles?.join(', ')}`,
+    }}
+    title={`${album.artists_sort?.replace(/\(.\d?\)/, '')} - ${
+      album.title
+    } | Adrian's Music Collection`}
+    description={`${album.formats.map(
+      ({ name }) => name,
+    )} from Adrian Bece's personal collection. This is "${
+      album.title
+    }" album by ${album.artists_sort?.replace(
+      /\(.\d?\)/,
+      '',
+    )}. This version of the ${album.formats.map(
+      ({ name }) => name,
+    )} has been released on ${album.year || 'an unknown date'} in ${
+      album.country || 'all regions of the world'
+    }. Genre(s): ${album.styles?.join(', ')}`}
+    twitter={{
+      cardType: 'summary_large_image',
+      handle: '@AdrianBeceDev',
+    }}
+    facebook={{
+      appId: '298638565596264',
+    }}
+  />
+{/key}
 
 <main>
-  {#await album}
-    <Album isLoading {currentPage} />
-  {:then data}
-    <Album {...data} {currentPage} />
-  {/await}
+  <Album {...album} {currentPage} />
 </main>
