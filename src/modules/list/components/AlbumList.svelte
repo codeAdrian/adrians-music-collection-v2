@@ -33,8 +33,8 @@
     <Pagination {...pagination} />
   </aside>
   <ul class="album-list">
-    {#each releases as album}
-      <Card {...album} />
+    {#each releases as album, i}
+      <Card {...album} isFirst={i === 0} />
     {/each}
   </ul>
   <aside class="controls">

@@ -30,6 +30,7 @@
 
 <section class="gallery">
   <LazyImage
+    loading="eager"
     src={Boolean(images.length)
       ? withCloudinary(images[activeIndex].resource_url)
       : PLACEHOLDER_GIF}

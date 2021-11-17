@@ -3,9 +3,10 @@
   export let alt = '';
   export let decoding: 'sync' | 'async' = 'sync';
   export let rest = {};
+  export let loading: 'lazy' | 'eager' = 'lazy';
 </script>
 
-<img {src} {alt} {...rest} {decoding} loading="lazy" />
+<img {src} {alt} {decoding} {loading} {...rest} />
 
 <style>
   img {

@@ -12,6 +12,7 @@
   };
   export let id;
   export let isLoading = false;
+  export let isFirst = false;
 
   const { cover_image, artists, formats, title } = basic_information;
 
@@ -38,6 +39,7 @@
         src={isLoading ? PLACEHOLDER_GIF : withCloudinary(cover_image)}
         alt={`Image cover of ${title} album by ${parseArtistsNames(artists)}`}
         decoding="async"
+        loading={isFirst ? 'eager' : 'lazy'}
       />
 
       <figcaption>
