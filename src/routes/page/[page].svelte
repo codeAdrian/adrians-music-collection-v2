@@ -1,3 +1,7 @@
+<script context="module">
+  export const prerender = true;
+</script>
+
 <script>
   import { fetchAlbums } from 'src/modules/list/services/fetchAlbums';
   import { page } from '$app/stores';
