@@ -1,8 +1,6 @@
 import preprocess from 'svelte-preprocess';
 import path from 'path';
 
-import postcssPresetEnv from 'postcss-preset-env';
-import cssnano from 'cssnano';
 import vercel from '@sveltejs/adapter-vercel';
 import fs from 'fs';
 
@@ -25,6 +23,9 @@ const config = {
     target: '#svelte',
     adapter: vercel(),
     vite: {
+      build: {
+        minify: 'terser',
+      },
       hydratable: true,
       resolve: {
         alias: {

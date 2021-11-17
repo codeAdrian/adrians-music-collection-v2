@@ -17,7 +17,6 @@
   export let formats = [];
   export let identifiers = [];
   export let notes = '';
-  export let id = '';
 
   const hasVideo = Boolean(videos.length);
   const videoId = hasVideo && videos[0].uri.split('v=')[1];
