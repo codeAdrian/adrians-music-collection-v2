@@ -1,6 +1,8 @@
+import { withCloudinary } from './withCloudinary';
+
 const preloadImage = (url: string) => {
   const img = new Image();
-  img.src = url;
+  img.src = withCloudinary(url);
   return img;
 };
 

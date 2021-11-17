@@ -2,6 +2,7 @@
   import { parseArtistsNames } from 'src/utils/parseArtistsNames';
   import LazyImage from 'src/components/LazyImage.svelte';
   import { PLACEHOLDER_GIF } from 'src/constants/placeholder';
+  import { withCloudinary } from 'src/utils/withCloudinary';
 
   export let basic_information = {
     cover_image: '',
@@ -34,7 +35,7 @@
     <figure>
       <i class="fa-solid fa-compact-disc card__spinner" />
       <LazyImage
-        src={isLoading ? PLACEHOLDER_GIF : cover_image}
+        src={isLoading ? PLACEHOLDER_GIF : withCloudinary(cover_image)}
         alt={`Image cover of ${title} album by ${parseArtistsNames(artists)}`}
         decoding="async"
       />

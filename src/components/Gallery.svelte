@@ -1,6 +1,7 @@
 <script>
   import { PLACEHOLDER_GIF } from 'src/constants/placeholder';
   import { preloadImages } from 'src/utils/preloadImages';
+  import { withCloudinary } from 'src/utils/withCloudinary';
   import { onMount } from 'svelte';
 
   import LazyImage from './LazyImage.svelte';
@@ -30,7 +31,7 @@
 <section class="gallery">
   <LazyImage
     src={Boolean(images.length)
-      ? images[activeIndex].resource_url
+      ? withCloudinary(images[activeIndex].resource_url)
       : PLACEHOLDER_GIF}
   />
 
