@@ -31,7 +31,7 @@
 
 <MetaTags
   title={`Adrian's Music Collection`}
-  description="Adrian's Music Collection is a website containing the entire CD and vinyl collection of Adrian Bece (codeadrian.github.io)."
+  description="Adrian's Music Collection contains up-to-date list of Adrian Bece's LP and CD collection with detailed information about each collection item."
   openGraph={{
     type: 'website',
     title: `Adrian's Music Collection`,
@@ -42,7 +42,7 @@
       },
     ],
     description:
-      "Adrian's Music Collection is a website containing the entire CD and vinyl collection of Adrian Bece (codeadrian.github.io).",
+      "Adrian's Music Collection contains up-to-date list of Adrian Bece's LP and CD collection with detailed information about each collection item.",
     site_name: "Adrian's Music Collection",
   }}
   twitter={{
