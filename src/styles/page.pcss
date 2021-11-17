@@ -1,0 +1,18 @@
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.main {
+    margin: 0 auto;
+    padding: 0 var(--spacing-1);
+
+    @media (--mq-tablet-min) {
+        padding: 0 var(--spacing-2);
+    }
+}

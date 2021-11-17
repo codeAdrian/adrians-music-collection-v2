@@ -1,0 +1,95 @@
+:root {
+    --font-family-primary: Germania One, Arial sans-serif;
+    --font-family-secondary: Titillium Web, Arial, sans-serif;
+
+    --typography-lineHeight: 1.5;
+    --typography-fontSize-px: 16;
+    --typography-scale: 1.333;
+
+    --font-weight-normal: 400;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+}
+
+:root {
+    --typography-fontSize: calc((var(--typography-fontSize-px) / 16));
+
+    --typography-scale-1: var(--typography-scale);
+    --typography-scale-2: calc(
+        var(--typography-scale-1) * var(--typography-scale)
+    );
+    --typography-scale-3: calc(
+        var(--typography-scale-2) * var(--typography-scale)
+    );
+    --typography-scale-4: calc(
+        var(--typography-scale-3) * var(--typography-scale)
+    );
+    --typography-scale-5: calc(
+        var(--typography-scale-4) * var(--typography-scale)
+    );
+    --typography-scale-6: calc(
+        var(--typography-scale-5) * var(--typography-scale)
+    );
+
+    --font-size-smallest: calc((1 / var(--typography-scale-3)) * 1rem);
+    --font-size-smaller: calc((1 / var(--typography-scale-2)) * 1rem);
+    --font-size-small: calc((1 / var(--typography-scale-1)) * 1rem);
+    --font-size-base: 1rem;
+    --font-size-medium: calc(var(--typography-scale-1) * 1rem);
+    --font-size-larger: calc(var(--typography-scale-2) * 1rem);
+    --font-size-large: calc(var(--typography-scale-3) * 1rem);
+    --font-size-xlarge: calc(var(--typography-scale-4) * 1rem);
+    --font-size-xxlarge: calc(var(--typography-scale-5) * 1rem);
+    --font-size-xxxlarge: calc(var(--typography-scale-6) * 1rem);
+}
+
+:root {
+    --rhythmUnit: calc(var(--typography-lineHeight) * 1rem);
+    --spacing-n5: calc(var(--rhythmUnit) / 6);
+    --spacing-n4: calc(var(--rhythmUnit) / 5);
+    --spacing-n3: calc(var(--rhythmUnit) / 4);
+    --spacing-n2: calc(var(--rhythmUnit) / 3);
+    --spacing-n1: calc(var(--rhythmUnit) / 2);
+    --spacing-1: var(--rhythmUnit);
+    --spacing-2: calc(2 * var(--rhythmUnit));
+    --spacing-3: calc(3 * var(--rhythmUnit));
+    --spacing-4: calc(4 * var(--rhythmUnit));
+    --spacing-5: calc(5 * var(--rhythmUnit));
+    --spacing-6: calc(6 * var(--rhythmUnit));
+    --spacing-7: calc(7 * var(--rhythmUnit));
+    --spacing-8: calc(8 * var(--rhythmUnit));
+    --spacing-9: calc(9 * var(--rhythmUnit));
+    --spacing-10: calc(10 * var(--rhythmUnit));
+}
+
+:root {
+    --color-gray-1: #202020;
+    --color-gray-2: #363636;
+    --color-gray-3: #555;
+    --color-gray-4: #888;
+    --color-gray-5: #ccc;
+    --color-gray-6: #ddd;
+    --color-gray-7: #f0f0f0;
+    --color-gray-8: #fff;
+
+    --color-cta: #b81d18;
+    --color-cta-darker: #951813;
+
+    --color-pattern: linear-gradient(
+        -45deg,
+        var(--color-gray-7) 25%,
+        var(--color-gray-8) 0,
+        var(--color-gray-8) 50%,
+        var(--color-gray-7) 0,
+        var(--color-gray-7) 75%,
+        var(--color-gray-8) 0,
+        var(--color-gray-8)
+    );
+}
+
+:root {
+    --container-wide: 1440px;
+    --container-large: 968px;
+    --container-medium: 720px;
+    --container-small: 360px;
+}
