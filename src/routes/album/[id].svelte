@@ -53,7 +53,7 @@
         '',
       )}. This version of the ${album.formats.map(
         ({ name }) => name,
-      )} has been released on ${album.year || 'an unknown date'} in ${
+      )} has been released in ${album.year || 'an unknown date'} in ${
         album.country || 'all regions of the world'
       }. Genre(s): ${album.styles?.join(', ')}`,
     }}
@@ -69,15 +69,12 @@
       '',
     )}. This version of the ${album.formats.map(
       ({ name }) => name,
-    )} has been released on ${album.year || 'an unknown date'} in ${
+    )} has been released in ${album.year || 'an unknown date'} in ${
       album.country || 'all regions of the world'
     }. Genre(s): ${album.styles?.join(', ')}`}
     twitter={{
       cardType: 'summary_large_image',
       handle: '@AdrianBeceDev',
-    }}
-    facebook={{
-      appId: '298638565596264',
     }}
   />
 {/key}

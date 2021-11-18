@@ -18,6 +18,8 @@
   export let identifiers = [];
   export let notes = '';
 
+  console.log(tracklist);
+
   const hasVideo = Boolean(videos.length);
   const videoId = hasVideo && videos[0].uri.split('v=')[1];
 
@@ -97,8 +99,12 @@
       <dt>Tracklist</dt>
       <dd>
         <ol class="album__list album__tracklist album__wrapper">
-          {#each tracklist as { position, title, duration }}
-            {#if position && duration}
+          {#each tracklist as { position, title, duration, type_ }}
+            {#if type_ === 'heading'}
+              <li class="album__tracklist-title">
+                {title}
+              </li>
+            {:else}
               <li>
                 <span>
                   {position}
@@ -107,12 +113,8 @@
                   {title}
                 </span>
                 <span class="album__tracklist-duration">
-                  {duration}
+                  {duration || 'n/a'}
                 </span>
-              </li>
-            {:else}
-              <li class="album__tracklist-title">
-                {title}
               </li>
             {/if}
           {/each}
@@ -224,8 +226,8 @@
 
   .album__tracklist > li:not(.album__tracklist-title) {
     display: grid;
-    grid-template-columns: minmax(2ch, max-content) auto minmax(
-        min-content,
+    grid-template-columns: minmax(5ch, max-content) auto minmax(
+        7ch,
         max-content
       );
     grid-gap: var(--spacing-1);
