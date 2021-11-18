@@ -67,4 +67,10 @@
   .album__wrapper {
     max-width: var(--container-medium);
   }
+
+  .album__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
 </style>
