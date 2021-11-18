@@ -53,6 +53,9 @@
     cardType: 'summary_large_image',
     handle: '@AdrianBeceDev',
   }}
+  facebook={{
+    appId: '298638565596264',
+  }}
 />
 <Header />
 <main class="main">
