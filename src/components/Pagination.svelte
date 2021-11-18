@@ -1,7 +1,7 @@
 <script>
   import { activePage } from 'src/stores/activePage';
 
-  export let pages = 11;
+  export let pages = 8;
   export let page = 1;
   export let isLoading = false;
 

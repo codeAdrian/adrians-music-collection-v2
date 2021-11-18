@@ -14,6 +14,8 @@
   export let isLoading = false;
   export let isFirst = false;
 
+  $: isClickedOn = false;
+
   const { cover_image, artists, formats, title } = basic_information;
 
   const isLimited = formats.some(({ descriptions }) =>
@@ -29,10 +31,23 @@
   const format = formats.find(
     (item) => item?.name && ['CD', 'Vinyl'].includes(item.name),
   );
+
+  const handleClick = () => {
+    if (isLoading) {
+      return;
+    }
+
+    isClickedOn = true;
+  };
 </script>
 
 <li>
-  <a href={isLoading ? '#' : `/album/${id}`} sveltekit:prefetch>
+  <a
+    on:click={handleClick}
+    href={isLoading ? '#' : `/album/${id}`}
+    class:card--clicked={isClickedOn}
+    sveltekit:prefetch
+  >
     <figure>
       <i class="fa-solid fa-compact-disc card__spinner" />
       <LazyImage
@@ -65,6 +80,11 @@
 </li>
 
 <style>
+  .card--clicked :global(img) {
+    opacity: 0.2;
+    z-index: 0;
+  }
+
   figure {
     margin: 0;
     display: flex;

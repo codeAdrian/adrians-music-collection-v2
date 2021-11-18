@@ -18,8 +18,6 @@
   export let identifiers = [];
   export let notes = '';
 
-  console.log(tracklist);
-
   const hasVideo = Boolean(videos.length);
   const videoId = hasVideo && videos[0].uri.split('v=')[1];
 
