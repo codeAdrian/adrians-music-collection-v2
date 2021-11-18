@@ -111,16 +111,6 @@
     font-size: var(--font-size-medium);
     margin: 0;
   }
-
-  .album__section--long {
-    max-width: var(--container-large);
-  }
-
-  .album__section--long > :global(dd) {
-    font-size: var(--font-size-base);
-    word-break: break-word;
-  }
-
   .album__section > :global(dd + dt) {
     margin-top: var(--spacing-1);
   }

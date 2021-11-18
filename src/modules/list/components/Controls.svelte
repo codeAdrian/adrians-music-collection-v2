@@ -10,7 +10,11 @@
   <div>
     <Sort />
   </div>
-  <Pagination {isLoading} {...pagination} />
+  {#if isLoading}
+    <Pagination isLoading />
+  {:else}
+    <Pagination {...pagination} />
+  {/if}
 </aside>
 
 <style>
