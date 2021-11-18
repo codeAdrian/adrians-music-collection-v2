@@ -10,7 +10,7 @@
     formats: [],
     title: '',
   };
-  export let id;
+  export let id = '';
   export let isLoading = false;
   export let isFirst = false;
 
