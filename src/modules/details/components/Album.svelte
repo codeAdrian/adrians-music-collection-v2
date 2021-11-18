@@ -105,7 +105,10 @@
             {:else}
               <li>
                 <span>
-                  {position}
+                  {position
+                    .replace('CD-', '')
+                    .replace('DVD-', '')
+                    .replace('BD-', '')}
                 </span>
                 <span>
                   {title}
@@ -224,7 +227,7 @@
 
   .album__tracklist > li:not(.album__tracklist-title) {
     display: grid;
-    grid-template-columns: minmax(50px, max-content) auto minmax(
+    grid-template-columns: minmax(4ch, max-content) auto minmax(
         50px,
         max-content
       );
