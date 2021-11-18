@@ -224,11 +224,11 @@
 
   .album__tracklist > li:not(.album__tracklist-title) {
     display: grid;
-    grid-template-columns: minmax(5ch, max-content) auto minmax(
-        7ch,
+    grid-template-columns: minmax(50px, max-content) auto minmax(
+        50px,
         max-content
       );
-    grid-gap: var(--spacing-1);
+    grid-gap: var(--spacing-n1);
     margin-top: var(--spacing-n3);
     padding-bottom: var(--spacing-n3);
     align-items: flex-end;
@@ -266,6 +266,7 @@
   .album__tracklist-duration {
     font-size: var(--font-size-small);
     color: var(--color-gray-3);
+    text-align: right;
   }
 
   .album__wrapper {
