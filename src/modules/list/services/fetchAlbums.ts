@@ -1,3 +1,4 @@
+import { goto } from '$app/navigation';
 import { API_ALBUMS_URL } from 'src/constants/api';
 import { withAuth } from 'src/utils/withAuth';
 import { withPage } from 'src/utils/withPage';
@@ -11,6 +12,12 @@ export const fetchAlbums = async (
   const url = page > 1 ? withPage(API_ALBUMS_URL, page) : API_ALBUMS_URL;
   const urlWithOptions = withSort(url, sortBy, sortDirection);
   const data = await fetch(withAuth(urlWithOptions, true));
+
+  if (data.status !== 200) {
+    goto('/');
+    return;
+  }
+
   const json = await data.json();
   return json;
 };
