@@ -51,8 +51,9 @@
     <figure>
       <i class="fa-solid fa-compact-disc card__spinner" />
       <LazyImage
-        src={isLoading ? PLACEHOLDER_GIF : withCloudinary(cover_image)}
+        src={isLoading ? PLACEHOLDER_GIF : withCloudinary(cover_image, true)}
         alt={`Image cover of ${title} album by ${parseArtistsNames(artists)}`}
+        rest={{ width: '400', height: '400' }}
         decoding="async"
         loading={isFirst ? 'eager' : 'lazy'}
       />
