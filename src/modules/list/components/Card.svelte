@@ -177,7 +177,7 @@
 
   .optimize-render {
     content-visibility: auto;
-    contain-intrinsic-size: 500px;
+    contain-intrinsic-size: 200px;
   }
 
   @keyframes spin {
