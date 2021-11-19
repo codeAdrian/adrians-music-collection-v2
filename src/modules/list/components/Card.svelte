@@ -12,7 +12,7 @@
   };
   export let id = '';
   export let isLoading = false;
-  export let isFirst = false;
+  export let index = 0;
 
   $: isClickedOn = false;
 
@@ -41,7 +41,7 @@
   };
 </script>
 
-<li>
+<li class:optimize-render={index > 7}>
   <a
     on:click={handleClick}
     href={isLoading ? '#' : `/album/${id}`}
@@ -55,7 +55,7 @@
         alt={`Image cover of ${title} album by ${parseArtistsNames(artists)}`}
         rest={{ width: '400', height: '400' }}
         decoding="async"
-        loading={isFirst ? 'eager' : 'lazy'}
+        loading={index === 0 ? 'eager' : 'lazy'}
       />
 
       <figcaption>
@@ -173,6 +173,11 @@
     animation: spin 1s ease infinite;
     transform: translateZ(0);
     backface-visibility: hidden;
+  }
+
+  .optimize-render {
+    content-visibility: auto;
+    contain-intrinsic-size: 500px;
   }
 
   @keyframes spin {
