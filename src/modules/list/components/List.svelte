@@ -8,12 +8,12 @@
 
 <ul class="album-list">
   {#if isLoading}
-    {#each [...new Array(API_PER_PAGE)] as _, index}
-      <Card isLoading {index} />
+    {#each [...new Array(API_PER_PAGE)] as _}
+      <Card isLoading />
     {/each}
   {:else}
-    {#each releases as album, index}
-      <Card {...album} {index} />
+    {#each releases as album, i}
+      <Card {...album} isFirst={i === 0} />
     {/each}
   {/if}
 </ul>
