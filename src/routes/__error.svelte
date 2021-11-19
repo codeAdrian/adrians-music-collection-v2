@@ -13,10 +13,11 @@
 
 <style>
   .not-found {
-    min-height: calc(100vh - 38px - 175px);
+    min-height: calc(100vh - 38px - 176px);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
     align-items: center;
   }
 
@@ -31,10 +32,12 @@
 
   .not-found__title {
     font-size: var(--font-size-xxlarge);
+    line-height: 1.1;
   }
 
   .not-found__subtitle {
     font-size: var(--font-size-large);
+    margin: var(--spacing-n1) 0;
   }
 
   .not-found__link {
@@ -55,6 +58,12 @@
     }
     to {
       transform: rotateZ(359deg);
+    }
+  }
+
+  @media (--mq-tablet-min) {
+    .not-found {
+      min-height: calc(100vh - 86px - 175px);
     }
   }
 </style>
