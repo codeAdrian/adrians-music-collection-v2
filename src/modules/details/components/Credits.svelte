@@ -38,7 +38,7 @@
 
   :global(.theme--light) .album__details > dt {
     @media (--mq-tablet-min) {
-      border-bottom: calc(var(--spacing-n4) / 2) solid var(--color-gray-7);
+      border-bottom: calc(var(--spacing-n4) / 2) solid var(--color-gray-6);
     }
   }
 
@@ -54,7 +54,7 @@
   }
 
   :global(.theme--light) .album__details > dd {
-    border-bottom: calc(var(--spacing-n4) / 2) solid var(--color-gray-7);
+    border-bottom: calc(var(--spacing-n4) / 2) solid var(--color-gray-6);
   }
 
   :global(.theme--dark) .album__details > dd {

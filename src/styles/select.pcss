@@ -1,12 +1,25 @@
 select {
-    /*border: var(--spacing-n1) double var(--color-gray-1);*/
     padding: var(--spacing-n3) var(--spacing-1);
     border-width: 0;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.theme--light select {
     box-shadow: 0 calc(var(--spacing-n5) / 2) 0 0 var(--color-gray-5);
     background-color: var(--color-gray-8);
 
     &:focus {
         outline: 0;
         box-shadow: 0 calc(var(--spacing-n5) / 2) 0 0 var(--color-gray-1);
+    }
+}
+
+.theme--dark select {
+    box-shadow: 0 calc(var(--spacing-n5) / 2) 0 0 var(--color-gray-4);
+    background-color: var(--color-gray-5);
+
+    &:focus {
+        outline: 0;
+        box-shadow: 0 calc(var(--spacing-n5) / 2) 0 0 var(--color-gray-7);
     }
 }

@@ -52,7 +52,7 @@
   }
 
   :global(.theme--light) .album__tracklist > li:not(.album__tracklist-title) {
-    border-bottom: calc(var(--spacing-n4) / 2) solid var(--color-gray-7);
+    border-bottom: calc(var(--spacing-n4) / 2) solid var(--color-gray-6);
   }
 
   :global(.theme--dark) .album__tracklist > li:not(.album__tracklist-title) {
