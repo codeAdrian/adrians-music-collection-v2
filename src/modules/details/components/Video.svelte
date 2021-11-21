@@ -27,6 +27,13 @@
     border: 0;
     width: 100%;
     aspect-ratio: 16/9;
+  }
+
+  :global(.theme--light) .album__video-frame {
     background-color: var(--color-gray-7);
+  }
+
+  :global(.theme--dark) .album__video-frame {
+    background-color: var(--color-gray-4);
   }
 </style>
