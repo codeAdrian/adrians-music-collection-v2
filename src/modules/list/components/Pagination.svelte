@@ -1,5 +1,5 @@
 <script>
-  import { activePage } from 'src/stores/activePage';
+  import { activePage } from 'src/modules/list/store/store';
 
   export let pages = 8;
   export let page = 1;
@@ -67,28 +67,55 @@
     display: flex;
   }
 
-  .pagination--loading {
-    background-color: var(--color-gray-7);
-  }
-
   .pagination__link {
     padding: 0 var(--spacing-n4);
-    color: var(--color-gray-1);
     text-decoration: none;
+    transition: color 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .pagination__link:not(.pagination__link--current):hover {
+  .pagination__link:not([href]) {
+    opacity: 0.25;
+    cursor: not-allowed;
+  }
+
+  :global(.theme--light) .pagination__link {
+    color: var(--color-gray-1);
+  }
+
+  :global(.theme--dark) .pagination__link {
+    color: var(--color-gray-5);
+  }
+
+  :global(.theme--light)
+    .pagination__link[href]:not(.pagination__link--current):hover {
     box-shadow: 0 calc(var(--spacing-n5) / 2) 0 0 var(--color-gray-5);
   }
 
-  .pagination__link--current {
+  :global(.theme--light) .pagination__link--current {
     box-shadow: 0 calc(var(--spacing-n5) / 2) 0 0 var(--color-gray-1);
+  }
+
+  :global(.theme--dark)
+    .pagination__link[href]:not(.pagination__link--current):hover {
+    box-shadow: 0 calc(var(--spacing-n5) / 2) 0 0 var(--color-gray-4);
+  }
+
+  :global(.theme--dark) .pagination__link--current {
+    box-shadow: 0 calc(var(--spacing-n5) / 2) 0 0 var(--color-gray-7);
+  }
+
+  :global(.theme--light) .pagination--loading {
+    background-color: var(--color-gray-7);
+  }
+
+  :global(.theme--dark) .pagination--loading {
+    background-color: var(--color-gray-4);
   }
 
   .pagination--loading *,
   .pagination--loading:hover {
-    color: transparent;
+    color: transparent !important;
     box-shadow: 0 0 0 0 transparent !important;
-    pointer-events: none;
+    pointer-events: none !important;
   }
 </style>

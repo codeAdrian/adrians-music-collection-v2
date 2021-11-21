@@ -1,6 +1,6 @@
 <script>
-  import Pagination from 'src/components/Pagination.svelte';
-  import Sort from 'src/components/Sort.svelte';
+  import Pagination from 'src/modules/list/components/Pagination.svelte';
+  import Sort from 'src/modules/list/components/Sort.svelte';
 
   export let isLoading = false;
   export let pagination = {};
@@ -29,10 +29,15 @@
   }
 
   .controls > :global(div) {
+    margin-bottom: var(--spacing-1);
+
     @media (--mq-tablet-max) {
       display: flex;
       justify-content: space-between;
-      margin-bottom: var(--spacing-1);
+    }
+
+    @media (--mq-tablet-min) {
+      margin-bottom: 0;
     }
   }
 

@@ -28,13 +28,26 @@
   .album__section {
     padding: var(--spacing-1);
     margin: 0;
+    transition: color 0.3s ease;
   }
 
   .album__section > :global(dt) {
-    color: var(--color-cta);
     font-family: var(--font-family-primary);
     font-weight: var(--font-weight-normal);
     font-size: var(--font-size-medium);
+    transition: color 0.3s ease;
+  }
+
+  :global(.theme--light) .album__section > :global(dt) {
+    color: var(--color-cta);
+  }
+
+  :global(.theme--dark) .album__section > :global(dt) {
+    color: var(--color-cta-lighter);
+  }
+
+  :global(.theme--dark) .album__section {
+    color: var(--color-gray-5);
   }
 
   .album__section > :global(dd) {

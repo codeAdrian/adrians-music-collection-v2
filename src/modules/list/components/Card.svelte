@@ -18,12 +18,31 @@
 
   const { cover_image, artists, formats, title } = basic_information;
 
-  const isLimited = formats.some(({ descriptions }) =>
-    descriptions?.includes('Limited Edition'),
+  const isLimited = formats.some(
+    ({ descriptions }) =>
+      descriptions?.includes('Limited Edition') ||
+      descriptions?.includes('Limited edition'),
   );
 
-  const isDeluxe = formats.some(({ descriptions }) =>
-    descriptions?.includes('Deluxe Edition'),
+  const isClubEdition = formats.some(
+    ({ descriptions }) =>
+      descriptions?.includes('Club Edition') ||
+      descriptions?.includes('Club edition'),
+  );
+
+  const isOCard = formats.some(
+    ({ text }) => text?.includes('O-Card') || text?.includes('O-card'),
+  );
+
+  const isTourEdition = formats.some(
+    ({ text }) =>
+      text?.includes('Tour Edition') || text?.includes('Tour edition'),
+  );
+
+  const isDeluxe = formats.some(
+    ({ descriptions }) =>
+      descriptions?.includes('Deluxe Edition') ||
+      descriptions?.includes('Deluxe edition'),
   );
 
   const isBoxSet = formats.some(({ name = '' }) => name === 'Box Set');
@@ -41,14 +60,15 @@
   };
 </script>
 
-<li>
+<li class="card">
   <a
     on:click={handleClick}
     href={isLoading ? '#' : `/album/${id}`}
     class:card--clicked={isClickedOn}
+    class="card__link"
     sveltekit:prefetch
   >
-    <figure>
+    <figure class="card__figure">
       <i class="fa-solid fa-compact-disc card__spinner" />
       <LazyImage
         src={isLoading ? PLACEHOLDER_GIF : withCloudinary(cover_image, true)}
@@ -58,7 +78,7 @@
         loading={isFirst ? 'eager' : 'lazy'}
       />
 
-      <figcaption>
+      <figcaption class="card__content">
         <h2 class:skeleton={isLoading}>
           {parseArtistsNames(artists)}
         </h2>
@@ -69,11 +89,17 @@
           {format?.name ?? formats[0]?.name}
         </span>
         {#if isLimited}
-          <div class="banner">Limited</div>
+          <div class="card__banner">Limited</div>
         {:else if isDeluxe}
-          <div class="banner">Deluxe</div>
+          <div class="card__banner">Deluxe</div>
         {:else if isBoxSet}
-          <div class="banner">Box Set</div>
+          <div class="card__banner">Box Set</div>
+        {:else if isClubEdition}
+          <div class="card__banner">Club Edition</div>
+        {:else if isTourEdition}
+          <div class="card__banner">Tour Edition</div>
+        {:else if isOCard}
+          <div class="card__banner">O-Card</div>
         {/if}
       </figcaption>
     </figure>
@@ -86,15 +112,23 @@
     z-index: 0;
   }
 
-  figure {
+  .card__figure {
     margin: 0;
     display: flex;
     flex-direction: column;
     height: 100%;
+    transition: background-color 0.3s ease;
+  }
+
+  :global(.theme--light) {
     background-color: var(--color-gray-7);
   }
 
-  figure :global(img) {
+  :global(.theme--dark) {
+    background-color: var(--color-gray-3);
+  }
+
+  .card__figure :global(img) {
     aspect-ratio: 1/1;
     object-fit: cover;
     object-position: top center;
@@ -104,14 +138,21 @@
     position: relative;
   }
 
-  figcaption {
+  .card__content {
     padding: var(--spacing-1) var(--spacing-n2);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: var(--color-pattern);
     background-size: var(--spacing-n2) var(--spacing-n2);
     flex-grow: 1;
+  }
+
+  :global(.theme--light) .card__content {
+    background-image: var(--color-pattern-light);
+  }
+
+  :global(.theme--dark) .card__content {
+    background-image: var(--color-pattern-dark);
   }
 
   a,
@@ -126,14 +167,37 @@
     height: 100%;
   }
 
-  li {
+  :global(.theme--light) a,
+  :global(.theme--light) a:visited {
+    color: var(--color-gray-1);
+  }
+
+  :global(.theme--dark) a,
+  :global(.theme--dark) a:visited {
+    color: var(--color-gray-6);
+  }
+
+  .card {
     text-align: center;
+    transition: border-color 0.3s ease;
+  }
+
+  :global(.theme--light) .card {
     border: var(--spacing-n1) double var(--color-gray-1);
   }
 
-  li:hover {
+  :global(.theme--dark) .card {
+    border: var(--spacing-n1) double var(--color-gray-5);
+  }
+
+  :global(.theme--light) .card:hover {
     box-shadow: 0 0 var(--spacing-n3) calc(var(--spacing-n5) / 3)
       var(--color-gray-3);
+  }
+
+  :global(.theme--dark) .card:hover {
+    box-shadow: 0 0 var(--spacing-n3) calc(var(--spacing-n5) / 3)
+      var(--color-gray-4);
   }
 
   h2 {
@@ -147,7 +211,7 @@
     font-size: var(--font-size-medium);
   }
 
-  .banner {
+  .card__banner {
     display: block;
     white-space: nowrap;
     position: absolute;

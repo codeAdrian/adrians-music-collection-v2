@@ -96,7 +96,7 @@
   .footer__icon {
     display: inline-block;
     padding: 0 var(--spacing-n5);
-    color: var(--color-cta);
+    color: var(--color-cta-lighter);
   }
 
   .footer__link {

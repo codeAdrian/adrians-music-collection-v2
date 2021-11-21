@@ -1,4 +1,6 @@
 <script>
+  import Switcher from 'src/modules/theme/components/Switcher.svelte';
+
   export let href = '/';
 </script>
 
@@ -6,20 +8,17 @@
   <a class="header__link" {href}>
     <h1 class="header__logo">Adrian's Music Collection</h1>
   </a>
+
+  <Switcher />
 </header>
 
 <style>
   .header {
     background-color: var(--color-gray-1);
     color: var(--color-gray-8);
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
 
-    @media (--mq-mobileLandscape-min) {
-      text-align: left;
-    }
-  }
-
-  .header__logo {
     padding: var(--spacing-n2) var(--spacing-1);
 
     @media (--mq-tablet-min) {

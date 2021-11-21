@@ -75,11 +75,20 @@
   }
 
   .album__summary {
-    background: var(--color-pattern);
     background-size: var(--spacing-n2) var(--spacing-n2);
+
     @media (--mq-desktop-min) {
       text-align: right;
     }
+  }
+
+  :global(.theme--light) .album__summary {
+    background-image: var(--color-pattern-light);
+  }
+
+  :global(.theme--dark) .album__summary {
+    background-image: var(--color-pattern-dark);
+    color: var(--color-gray-7);
   }
 
   .album__list {
@@ -101,10 +110,18 @@
   }
 
   .album__section > :global(dt) {
-    color: var(--color-cta);
     font-family: var(--font-family-primary);
     font-weight: var(--font-weight-normal);
     font-size: var(--font-size-medium);
+    transition: color 0.3s ease;
+  }
+
+  :global(.theme--light) .album__section > :global(dt) {
+    color: var(--color-cta);
+  }
+
+  :global(.theme--dark) .album__section > :global(dt) {
+    color: var(--color-cta-lighter);
   }
 
   .album__section > :global(dd) {

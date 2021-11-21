@@ -4,6 +4,10 @@
     box-sizing: inherit;
 }
 
+html {
+    box-sizing: border-box;
+}
+
 .main {
     margin: 0 auto;
     padding: 0 var(--spacing-1);
@@ -11,4 +15,12 @@
     @media (--mq-tablet-min) {
         padding: 0 var(--spacing-2);
     }
+}
+
+body {
+    transition: background-color 0.3s ease;
+}
+
+.theme--dark {
+    background-color: var(--color-gray-2);
 }
