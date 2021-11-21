@@ -65,6 +65,12 @@
     padding: 0;
     list-style: none;
     display: flex;
+    min-width: 315px;
+    justify-content: flex-end;
+
+    @media (--mq-tablet-max) {
+      margin-top: var(--spacing-n2);
+    }
   }
 
   .pagination__link {

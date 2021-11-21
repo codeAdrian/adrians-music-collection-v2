@@ -1,6 +1,8 @@
 <script>
+  import Album from 'src/modules/details/components/Album.svelte';
   import Pagination from 'src/modules/list/components/Pagination.svelte';
   import Sort from 'src/modules/list/components/Sort.svelte';
+  import Showing from './Showing.svelte';
 
   export let isLoading = false;
   export let pagination = {};
@@ -10,11 +12,9 @@
   <div>
     <Sort />
   </div>
-  {#if isLoading}
-    <Pagination isLoading />
-  {:else}
-    <Pagination {...pagination} />
-  {/if}
+  <Showing {...pagination} />
+
+  <Pagination {isLoading} {...pagination} />
 </aside>
 
 <style>
@@ -23,8 +23,9 @@
     align-items: center;
     margin: var(--spacing-1) 0;
 
-    @media (--mq-tablet-min) {
+    @media (--mq-desktop-min) {
       display: flex;
+      justify-content: space-between;
     }
   }
 
