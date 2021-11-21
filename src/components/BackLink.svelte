@@ -19,8 +19,8 @@
     transform: rotate3d(0, 0, 1, -45deg);
     line-height: 1;
     text-decoration: none;
-    height: var(--spacing-1);
-    width: var(--spacing-1);
+    height: var(--spacing-2);
+    width: var(--spacing-2);
     transition: background-color 0.3s ease, color 0.3s ease,
       border-color 0.3s ease;
 
@@ -28,8 +28,6 @@
       bottom: var(--spacing-2);
       left: var(--spacing-1);
       font-size: var(--font-size-medium);
-      height: var(--spacing-2);
-      width: var(--spacing-2);
     }
   }
 
