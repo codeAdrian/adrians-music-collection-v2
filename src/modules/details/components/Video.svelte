@@ -9,6 +9,7 @@
 {#if hasVideo}
   <iframe
     class="album__video-frame"
+    loading="lazy"
     src={`https://www.youtube.com/embed/${videoId || ''}`}
     {title}
     data-modestbranding="1"
