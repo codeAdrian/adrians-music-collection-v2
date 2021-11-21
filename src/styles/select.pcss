@@ -1,7 +1,8 @@
 select {
     padding: var(--spacing-n3) var(--spacing-1);
     border-width: 0;
-    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease,
+        color 0.3s ease;
 }
 
 .theme--light select {
@@ -16,7 +17,8 @@ select {
 
 .theme--dark select {
     box-shadow: 0 calc(var(--spacing-n5) / 2) 0 0 var(--color-gray-4);
-    background-color: var(--color-gray-5);
+    background-color: var(--color-gray-2);
+    color: var(--color-gray-5);
 
     &:focus {
         outline: 0;
