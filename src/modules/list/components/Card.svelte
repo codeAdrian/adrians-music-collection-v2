@@ -120,11 +120,11 @@
     transition: background-color 0.3s ease;
   }
 
-  :global(.theme--light) {
+  :global(.theme--light) .card__link {
     background-color: var(--color-gray-7);
   }
 
-  :global(.theme--dark) {
+  :global(.theme--dark) .card__link {
     background-color: var(--color-gray-3);
   }
 
