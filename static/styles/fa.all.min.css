@@ -1,21 +1,109 @@
 /*!
  * Font Awesome Free 6.0.0-beta2 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- */.fa{font-family:'Font Awesome 6 Free';font-family:var(--fa-style-family,'Font Awesome 6 Free');font-weight:900;font-weight:var(--fa-style,900)}.fa,
- .fa-brands,
- .fa-duotone,
- .fa-light,
- .fa-regular,
- .fa-solid,
- .fa-thin,
- .fab,
- .fad,
- .fal,
- .far,
- .fas,
- .fat{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:inline-block;display:var(--fa-display,inline-block);font-style:normal;font-variant:normal;line-height:1;text-rendering:auto}@font-face{font-family:'Font Awesome 6 Brands';font-style:normal;font-weight:400;font-display:block;src:url(../webfonts/fa-brands-400.woff2) format('woff2'),url(../webfonts/fa-brands-400.ttf) format('truetype')}.fa-brands,
- .fab{font-family:'Font Awesome 6 Brands';font-weight:400}.fa-compact-disc:before{content:'\f51f'}.fa-angles-right:before{content:'\f101'}.fa-angle-right:before{content:'\f105'}.fa-angle-left:before{content:'\f104'}.fa-angles-left:before{content:'\f100'}.fa-arrow-right:before{content:'\f061'}.fa-arrow-left:before{content:'\f060'}.fa-mug-saucer:before{content:'\f0f4'}.fa-music:before{content:'\f001'}.fa-heart:before{content:'\f004'}.fa-github-alt:before{content:'\f113'}.fa-twitter:before{content:'\f099'}.fa-linkedin-in:before{content:'\f0e1'}@font-face{font-family:'Font Awesome 6 Free';font-style:normal;font-weight:900;font-display:block;src:url(../webfonts/fa-solid-900.woff2) format('woff2'),url(../webfonts/fa-solid-900.ttf) format('truetype')}.fa-regular,
- .fa-solid,
- .far,
- .fas{font-family:'Font Awesome 6 Free'}.fa-solid,
- .fas{font-weight:900}
+ */
+.fa {
+    font-family: 'Font Awesome 6 Free';
+    font-family: var(--fa-style-family, 'Font Awesome 6 Free');
+    font-weight: 900;
+    font-weight: var(--fa-style, 900);
+}
+.fa,
+.fa-brands,
+.fa-duotone,
+.fa-light,
+.fa-regular,
+.fa-solid,
+.fa-thin,
+.fab,
+.fad,
+.fal,
+.far,
+.fas,
+.fat {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    display: var(--fa-display, inline-block);
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+}
+@font-face {
+    font-family: 'Font Awesome 6 Brands';
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url(../webfonts/fa-brands-400.woff2) format('woff2'),
+        url(../webfonts/fa-brands-400.ttf) format('truetype');
+}
+.fa-brands,
+.fab {
+    font-family: 'Font Awesome 6 Brands';
+    font-weight: 400;
+}
+.fa-compact-disc:before {
+    content: '\f51f';
+}
+.fa-angles-right:before {
+    content: '\f101';
+}
+.fa-angle-right:before {
+    content: '\f105';
+}
+.fa-angle-left:before {
+    content: '\f104';
+}
+.fa-angles-left:before {
+    content: '\f100';
+}
+.fa-arrow-right:before {
+    content: '\f061';
+}
+.fa-arrow-left:before {
+    content: '\f060';
+}
+.fa-mug-saucer:before {
+    content: '\f0f4';
+}
+.fa-music:before {
+    content: '\f001';
+}
+.fa-heart:before {
+    content: '\f004';
+}
+.fa-github-alt:before {
+    content: '\f113';
+}
+.fa-twitter:before {
+    content: '\f099';
+}
+.fa-linkedin-in:before {
+    content: '\f0e1';
+}
+.fa-sun::before {
+    content: '\f185';
+}
+.fa-moon::before {
+    content: '\f186';
+}
+
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-style: normal;
+    font-weight: 900;
+    font-display: block;
+    src: url(../webfonts/fa-solid-900.woff2) format('woff2'),
+        url(../webfonts/fa-solid-900.ttf) format('truetype');
+}
+.fa-regular,
+.fa-solid,
+.far,
+.fas {
+    font-family: 'Font Awesome 6 Free';
+}
+.fa-solid,
+.fas {
+    font-weight: 900;
+}

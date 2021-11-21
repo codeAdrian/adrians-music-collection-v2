@@ -48,13 +48,29 @@
     grid-gap: var(--spacing-n1);
     margin-top: var(--spacing-n3);
     padding-bottom: var(--spacing-n3);
+    transition: border-color 0.3s ease;
+  }
+
+  :global(.theme--light) .album__tracklist > li:not(.album__tracklist-title) {
     border-bottom: calc(var(--spacing-n4) / 2) solid var(--color-gray-7);
+  }
+
+  :global(.theme--dark) .album__tracklist > li:not(.album__tracklist-title) {
+    border-bottom: calc(var(--spacing-n4) / 2) solid var(--color-gray-3);
   }
 
   .album__tracklist-duration {
     font-size: var(--font-size-small);
-    color: var(--color-gray-3);
     text-align: right;
+    transition: color 0.3s ease;
+  }
+
+  :global(.theme--light) .album__tracklist-duration {
+    color: var(--color-gray-3);
+  }
+
+  :global(.theme--dark) .album__tracklist-duration {
+    color: var(--color-gray-4);
   }
 
   .album__tracklist-title {

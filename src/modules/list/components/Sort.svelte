@@ -1,6 +1,6 @@
 <script>
   import { SORT_DIRECTIONS, SORT_OPTIONS } from 'src/constants/sort';
-  import { sortBy, sortDirection } from 'src/stores/sort';
+  import { sortBy, sortDirection } from 'src/modules/list/store/store';
 </script>
 
 <select bind:value={$sortBy}>

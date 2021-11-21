@@ -7,7 +7,7 @@
   import Header from 'src/components/Header.svelte';
   import AlbumList from 'src/modules/list/components/AlbumList.svelte';
   import { fetchAlbums } from 'src/modules/list/services/fetchAlbums';
-  import { sortBy, sortDirection } from 'src/stores/sort';
+  import { sortBy, sortDirection } from 'src/modules/list/store/store';
   import { onDestroy } from 'svelte';
   import { BASE_URL } from 'src/constants/hosting';
 

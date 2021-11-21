@@ -1,7 +1,14 @@
 .skeleton {
     color: transparent;
-    background-color: var(--color-gray-6);
     width: 100%;
+}
+
+.theme--light .skeleton {
+    background-color: var(--color-gray-6);
+}
+
+.theme--dark .skeleton {
+    background-color: var(--color-gray-4);
 }
 
 .skeleton::after {

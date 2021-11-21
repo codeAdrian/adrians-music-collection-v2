@@ -6,7 +6,7 @@
   import { fetchAlbums } from 'src/modules/list/services/fetchAlbums';
   import { page } from '$app/stores';
   import { onDestroy } from 'svelte';
-  import { sortBy, sortDirection } from 'src/stores/sort';
+  import { sortBy, sortDirection } from 'src/modules/list/store/store';
   import AlbumList from 'src/modules/list/components/AlbumList.svelte';
   import Header from 'src/components/Header.svelte';
   import { MetaTags } from 'svelte-meta-tags';

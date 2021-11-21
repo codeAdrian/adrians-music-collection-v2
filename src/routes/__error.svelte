@@ -21,6 +21,10 @@
     align-items: center;
   }
 
+  :global(.theme--dark) .not-found {
+    color: var(--color-gray-5);
+  }
+
   .not-found__icon {
     font-size: var(--font-size-xxlarge);
     display: block;
@@ -44,12 +48,24 @@
     display: inline-flex;
     text-decoration: none;
     padding: var(--spacing-n1) var(--spacing-1);
+  }
+
+  :global(.theme--light) .not-found__link {
     background-color: var(--color-gray-1);
     color: var(--color-gray-8);
   }
 
-  .not-found__link:hover {
+  :global(.theme--light) .not-found__link:hover {
     background-color: var(--color-gray-2);
+  }
+
+  :global(.theme--dark) .not-found__link {
+    background-color: var(--color-gray-7);
+    color: var(--color-gray-2);
+  }
+
+  :global(.theme--dark) .not-found__link:hover {
+    background-color: var(--color-gray-5);
   }
 
   @keyframes spin {

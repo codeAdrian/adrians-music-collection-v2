@@ -14,12 +14,14 @@
 </script>
 
 <script>
+  import { MetaTags } from 'svelte-meta-tags';
   import Album from 'src/modules/details/components/Album.svelte';
+  import Header from 'src/components/Header.svelte';
+
   import { fetchDetails } from 'src/modules/details/services/fetchDetails';
   import { onDestroy } from 'svelte';
-  import { activePage } from 'src/stores/activePage';
-  import Header from 'src/components/Header.svelte';
-  import { MetaTags } from 'svelte-meta-tags';
+  import { activePage } from 'src/modules/list/store/store';
+
   import { ALBUM_URL } from 'src/constants/hosting';
 
   export let album;

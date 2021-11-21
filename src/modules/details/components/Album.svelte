@@ -28,6 +28,7 @@
     community,
     formats,
     artists_sort,
+    title,
   };
 
   const contentProps = {

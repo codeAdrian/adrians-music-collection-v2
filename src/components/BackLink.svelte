@@ -15,15 +15,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--color-gray-7);
-    border: var(--spacing-n2) double var(--color-gray-1);
     z-index: 2;
     transform: rotate3d(0, 0, 1, -45deg);
     line-height: 1;
     text-decoration: none;
-    color: var(--color-gray-1);
     height: var(--spacing-1);
     width: var(--spacing-1);
+    transition: background-color 0.3s ease, color 0.3s ease,
+      border-color 0.3s ease;
 
     @media (--mq-tablet-min) {
       bottom: var(--spacing-2);
@@ -34,14 +33,30 @@
     }
   }
 
-  .backlink:hover,
-  .backlink:active {
+  :global(.theme--light) .backlink,
+  :global(.theme--light) .backlink:visited {
+    background-color: var(--color-gray-7);
+    color: var(--color-gray-1);
+    border: var(--spacing-n2) double var(--color-gray-1);
+  }
+
+  :global(.theme--dark) .backlink,
+  :global(.theme--dark) .backlink:visited {
+    background-color: var(--color-gray-2);
+    color: var(--color-gray-7);
+    border: var(--spacing-n2) double var(--color-gray-4);
+  }
+
+  :global(.theme--light) .backlink:hover,
+  :global(.theme--light) .backlink:active {
     box-shadow: 0 0 var(--spacing-n3) calc(var(--spacing-n5) / 3)
       var(--color-gray-3);
   }
 
-  .backlink:visited {
-    color: var(--color-gray-1);
+  :global(.theme--dark) .backlink:hover,
+  :global(.theme--dark) .backlink:active {
+    box-shadow: 0 0 var(--spacing-n3) calc(var(--spacing-n5) / 3)
+      var(--color-gray-4);
   }
 
   .backlink__icon {
