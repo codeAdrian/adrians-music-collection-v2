@@ -75,7 +75,8 @@
     href={isLoading ? '#' : `/album/${id}`}
     class:card--clicked={isClickedOn}
     class="card__link"
-    sveltekit:prefetch
+    data-sveltekit-preload-code
+    data-sveltekit-preload-data
   >
     <figure class="card__figure">
       <i class="fa-solid fa-compact-disc card__spinner" />
