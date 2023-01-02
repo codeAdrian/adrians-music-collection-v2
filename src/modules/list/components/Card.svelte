@@ -18,34 +18,43 @@
 
   const { cover_image, artists, formats, title } = basic_information;
 
-  const isLimited = formats.some(
-    ({ descriptions }) =>
-      descriptions?.includes('Limited Edition') ||
-      descriptions?.includes('Limited edition'),
-  );
+  const allDescriptions = formats
+    .flatMap(({ descriptions }) => descriptions?.join(',') ?? '')
+    .toString()
+    .toLowerCase()
+    .split(',');
 
-  const isClubEdition = formats.some(
-    ({ descriptions }) =>
-      descriptions?.includes('Club Edition') ||
-      descriptions?.includes('Club edition'),
-  );
+  const isRepress = allDescriptions.includes('repress');
+  const isReissue = allDescriptions.includes('reissue');
+  const isRemaster =
+    allDescriptions.includes('remaster') ||
+    allDescriptions.includes('remastered');
+
+  const isCompilation = allDescriptions.includes('compilation');
+
+  const isOriginal =
+    !isLoading &&
+    ((isCompilation && !isRepress && !isReissue) ||
+      [isReissue, isRepress, isRemaster].every((i) => !i));
+
+  const isLimited = allDescriptions.includes('limited edition');
+
+  const isClubEdition = allDescriptions.includes('club edition');
+
+  const isDeluxe = allDescriptions.includes('deluxe edition');
+
+  const isBoxSet = formats.some(({ name = '' }) => name === 'Box Set');
 
   const isOCard = formats.some(
     ({ text }) => text?.includes('O-Card') || text?.includes('O-card'),
   );
 
+  const isPromo = allDescriptions.includes('promo');
+
   const isTourEdition = formats.some(
     ({ text }) =>
       text?.includes('Tour Edition') || text?.includes('Tour edition'),
   );
-
-  const isDeluxe = formats.some(
-    ({ descriptions }) =>
-      descriptions?.includes('Deluxe Edition') ||
-      descriptions?.includes('Deluxe edition'),
-  );
-
-  const isBoxSet = formats.some(({ name = '' }) => name === 'Box Set');
 
   const format = formats.find(
     (item) => item?.name && ['CD', 'Vinyl'].includes(item.name),
@@ -60,7 +69,7 @@
   };
 </script>
 
-<li class="card">
+<li class="card" class:card--original={isOriginal}>
   <a
     on:click={handleClick}
     href={isLoading ? '#' : `/album/${id}`}
@@ -78,6 +87,22 @@
         loading={isFirst ? 'eager' : 'lazy'}
       />
 
+      <p class="card__note">
+        {#if isLoading}
+          &nbsp;
+        {:else if isCompilation}
+          Compilation
+        {:else if isOriginal}
+          First release
+        {:else if isRepress}
+          Repress
+        {:else if isRemaster}
+          Remaster
+        {:else if isReissue}
+          Reissue
+        {/if}
+      </p>
+
       <figcaption class="card__content">
         <h2 class:skeleton={isLoading}>
           {parseArtistsNames(artists)}
@@ -88,18 +113,24 @@
         <span class:skeleton={isLoading}>
           {format?.name ?? formats[0]?.name}
         </span>
-        {#if isLimited}
-          <div class="card__banner">Limited</div>
-        {:else if isDeluxe}
-          <div class="card__banner">Deluxe</div>
-        {:else if isBoxSet}
-          <div class="card__banner">Box Set</div>
-        {:else if isClubEdition}
-          <div class="card__banner">Club Edition</div>
-        {:else if isTourEdition}
-          <div class="card__banner">Tour Edition</div>
-        {:else if isOCard}
-          <div class="card__banner">O-Card</div>
+        {#if isLimited || isDeluxe || isBoxSet || isClubEdition || isTourEdition || isOCard || isPromo}
+          <div class="card__banner">
+            {#if isLimited}
+              Limited
+            {:else if isDeluxe}
+              Deluxe
+            {:else if isBoxSet}
+              Box Set
+            {:else if isClubEdition}
+              Club Edition
+            {:else if isTourEdition}
+              Tour Edition
+            {:else if isOCard}
+              O-Card
+            {:else if isPromo}
+              Promo copy
+            {/if}
+          </div>
         {/if}
       </figcaption>
     </figure>
@@ -110,6 +141,31 @@
   .card--clicked :global(img) {
     opacity: 0.2;
     z-index: 0;
+  }
+
+  .card__note {
+    line-height: 1;
+    letter-spacing: 0.02rem;
+    padding: var(--spacing-n3) var(--spacing-n2);
+  }
+
+  :global(.theme--dark) .card__note {
+    color: var(--color-gray-7);
+    background-color: var(--color-gray-4);
+  }
+
+  :global(.theme--light) .card__note {
+    color: var(--color-gray-7);
+    background-color: var(--color-gray-1);
+  }
+
+  :global(.theme--dark) .card.card--original .card__note {
+    color: var(--color-gray-1);
+    background-color: var(--color-gold-lighter);
+  }
+
+  :global(.theme--light) .card.card--original .card__note {
+    background-color: var(--color-gold-darker);
   }
 
   .card__figure {
@@ -187,7 +243,39 @@
   }
 
   :global(.theme--dark) .card {
-    border: var(--spacing-n1) double var(--color-gray-5);
+    border: var(--spacing-n1) double var(--color-gray-4);
+  }
+
+  :global(.theme--light) .card.card--original {
+    border-color: var(--color-gold-darker);
+  }
+
+  :global(.theme--dark) .card.card--original {
+    border-color: var(--color-gold-lighter);
+  }
+
+  .card.card--original .card__content {
+    --color-pattern-dark: linear-gradient(
+      -45deg,
+      var(--color-gold-darker) 25%,
+      var(--color-gray-2) 0,
+      var(--color-gray-2) 50%,
+      var(--color-gold-darker) 0,
+      var(--color-gold-darker) 75%,
+      var(--color-gray-2) 0,
+      var(--color-gray-2)
+    );
+
+    --color-pattern-light: linear-gradient(
+      -45deg,
+      var(--color-gold-lighter) 25%,
+      var(--color-gray-7) 0,
+      var(--color-gray-7) 50%,
+      var(--color-gold-lighter) 0,
+      var(--color-gold-lighter) 75%,
+      var(--color-gray-7) 0,
+      var(--color-gray-7)
+    );
   }
 
   :global(.theme--light) .card:hover {
@@ -198,6 +286,16 @@
   :global(.theme--dark) .card:hover {
     box-shadow: 0 0 var(--spacing-n3) calc(var(--spacing-n5) / 3)
       var(--color-gray-4);
+  }
+
+  :global(.theme--light) .card.card--original:hover {
+    box-shadow: 0 0 var(--spacing-n3) calc(var(--spacing-n5) / 3)
+      var(--color-gold-darker);
+  }
+
+  :global(.theme--dark) .card.card--original:hover {
+    box-shadow: 0 0 var(--spacing-n3) calc(var(--spacing-n5) / 3)
+      var(--color-gold-lighter);
   }
 
   h2 {
@@ -223,6 +321,8 @@
     transform: rotate3D(0, 0, 1, 45deg) translate3d(30%, -25%, 0);
     padding: var(--spacing-n3) var(--spacing-2);
     z-index: 2;
+    backface-visibility: hidden;
+    letter-spacing: 0.02rem;
   }
 
   .card__spinner {
