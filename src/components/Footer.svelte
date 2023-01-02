@@ -48,16 +48,6 @@
           <i class="fa-brands fa-github-alt" />
         </a>
       </li>
-      <li class="footer__item">
-        <a
-          href="https://www.buymeacoffee.com/ubnZ8GgDJ"
-          target="_blank"
-          class="footer__link"
-          rel="noopener noreferrer"
-        >
-          <i class="fa-solid fa-mug-saucer" />
-        </a>
-      </li>
     </ul>
   </section>
 </footer>
