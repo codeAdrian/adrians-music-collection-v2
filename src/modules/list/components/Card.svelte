@@ -19,17 +19,11 @@
 
   const { cover_image, artists, formats, title } = basic_information;
 
-  if (notes[2]) {
-    console.log(notes[2].value);
-  }
-
   const allDescriptions = formats
     .flatMap(({ descriptions }) => descriptions?.join(',') ?? '')
     .toString()
     .toLowerCase()
     .split(',');
-
-  console.log(notes, notes.length >= 3);
 
   const hasNote = notes.length >= 3 && Boolean(notes[2]?.value);
   const isRepress = allDescriptions.includes('repress');
