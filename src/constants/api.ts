@@ -11,3 +11,5 @@ export const API_DETAILS_URL = `${API_URL}releases/`;
 export const API_KEY = 'vSBHdUXayvCTfoKILYJX';
 
 export const API_SECRET = 'wAubyOQSSjdJpXKgyGSWyWdHvkYFKMae';
+
+export const API_TOKEN = 'DanYKXVmzCFEzaMEExEluoMSNzYsBrEuDPZpeRln';

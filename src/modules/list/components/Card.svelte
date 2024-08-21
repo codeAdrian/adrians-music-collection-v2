@@ -10,6 +10,7 @@
     formats: [],
     title: '',
   };
+  export let notes = [];
   export let id = '';
   export let isLoading = false;
   export let isFirst = false;
@@ -18,12 +19,19 @@
 
   const { cover_image, artists, formats, title } = basic_information;
 
+  if (notes[2]) {
+    console.log(notes[2].value);
+  }
+
   const allDescriptions = formats
     .flatMap(({ descriptions }) => descriptions?.join(',') ?? '')
     .toString()
     .toLowerCase()
     .split(',');
 
+  console.log(notes, notes.length >= 3);
+
+  const hasNote = notes.length >= 3 && Boolean(notes[2]?.value);
   const isRepress = allDescriptions.includes('repress');
   const isReissue = allDescriptions.includes('reissue');
   const isRemaster =
@@ -69,7 +77,11 @@
   };
 </script>
 
-<li class="card" class:card--original={isOriginal}>
+<li
+  class="card"
+  class:card--original={isOriginal}
+  class:card--special={hasNote}
+>
   <a
     on:click={handleClick}
     href={isLoading ? '#' : `/album/${id}`}
@@ -113,9 +125,15 @@
         <span class:skeleton={isLoading}>
           {format?.name ?? formats[0]?.name}
         </span>
-        {#if isLimited || isDeluxe || isBoxSet || isClubEdition || isTourEdition || isOCard || isPromo}
-          <div class="card__banner">
-            {#if isLimited}
+        {#if hasNote || isLimited || isDeluxe || isBoxSet || isClubEdition || isTourEdition || isOCard || isPromo}
+          <div
+            class={hasNote
+              ? 'card__banner card__banner--special'
+              : 'card__banner'}
+          >
+            {#if hasNote}
+              {notes[2].value}
+            {:else if isLimited}
               Limited
             {:else if isDeluxe}
               Deluxe
@@ -150,22 +168,13 @@
   }
 
   :global(.theme--dark) .card__note {
-    color: var(--color-gray-7);
-    background-color: var(--color-gray-4);
+    color: var(--card-text, --color-gray-7);
+    background-color: var(--card-theme);
   }
 
   :global(.theme--light) .card__note {
-    color: var(--color-gray-7);
-    background-color: var(--color-gray-1);
-  }
-
-  :global(.theme--dark) .card.card--original .card__note {
-    color: var(--color-gray-1);
-    background-color: var(--color-gold-lighter);
-  }
-
-  :global(.theme--light) .card.card--original .card__note {
-    background-color: var(--color-gold-darker);
+    color: var(--card-text, --color-gray-7);
+    background-color: var(--card-theme);
   }
 
   .card__figure {
@@ -176,12 +185,16 @@
     transition: background-color 0.3s ease;
   }
 
-  :global(.theme--light) .card__link {
-    background-color: var(--color-gray-7);
-  }
-
-  :global(.theme--dark) .card__link {
-    background-color: var(--color-gray-3);
+  .card__link::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--card-theme);
+    opacity: 0.25;
+    z-index: -1;
   }
 
   .card__figure :global(img) {
@@ -199,16 +212,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-size: var(--spacing-n2) var(--spacing-n2);
     flex-grow: 1;
-  }
-
-  :global(.theme--light) .card__content {
-    background-image: var(--color-pattern-light);
-  }
-
-  :global(.theme--dark) .card__content {
-    background-image: var(--color-pattern-dark);
   }
 
   a,
@@ -236,66 +240,39 @@
   .card {
     text-align: center;
     transition: border-color 0.3s ease;
+    border: var(--spacing-n1) double var(--card-theme);
   }
 
   :global(.theme--light) .card {
-    border: var(--spacing-n1) double var(--color-gray-1);
+    --card-theme: var(--color-gray-2);
+    --card-text: var(--color-gray-7);
   }
 
   :global(.theme--dark) .card {
-    border: var(--spacing-n1) double var(--color-gray-4);
+    --card-theme: var(--color-gray-4);
   }
 
   :global(.theme--light) .card.card--original {
-    border-color: var(--color-gold-darker);
+    --card-theme: var(--color-bronze-darker);
   }
 
   :global(.theme--dark) .card.card--original {
-    border-color: var(--color-gold-lighter);
+    --card-theme: var(--color-bronze-lighter);
+    --card-text: var(--color-gray-1);
   }
 
-  .card.card--original .card__content {
-    --color-pattern-dark: linear-gradient(
-      -45deg,
-      var(--color-gold-darker) 25%,
-      var(--color-gray-2) 0,
-      var(--color-gray-2) 50%,
-      var(--color-gold-darker) 0,
-      var(--color-gold-darker) 75%,
-      var(--color-gray-2) 0,
-      var(--color-gray-2)
-    );
-
-    --color-pattern-light: linear-gradient(
-      -45deg,
-      var(--color-gold-lighter) 25%,
-      var(--color-gray-7) 0,
-      var(--color-gray-7) 50%,
-      var(--color-gold-lighter) 0,
-      var(--color-gold-lighter) 75%,
-      var(--color-gray-7) 0,
-      var(--color-gray-7)
-    );
+  :global(.theme--light) .card.card--special {
+    --card-theme: var(--color-gold-darker);
   }
 
-  :global(.theme--light) .card:hover {
+  :global(.theme--dark) .card.card--special {
+    --card-theme: var(--color-gold-lighter);
+    --card-text: var(--color-gray-1);
+  }
+
+  .card:hover {
     box-shadow: 0 0 var(--spacing-n3) calc(var(--spacing-n5) / 3)
-      var(--color-gray-3);
-  }
-
-  :global(.theme--dark) .card:hover {
-    box-shadow: 0 0 var(--spacing-n3) calc(var(--spacing-n5) / 3)
-      var(--color-gray-4);
-  }
-
-  :global(.theme--light) .card.card--original:hover {
-    box-shadow: 0 0 var(--spacing-n3) calc(var(--spacing-n5) / 3)
-      var(--color-gold-darker);
-  }
-
-  :global(.theme--dark) .card.card--original:hover {
-    box-shadow: 0 0 var(--spacing-n3) calc(var(--spacing-n5) / 3)
-      var(--color-gold-lighter);
+      var(--card-theme);
   }
 
   h2 {
@@ -310,16 +287,22 @@
   }
 
   .card__banner {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
     white-space: nowrap;
     position: absolute;
     font-size: var(--font-size-small);
-    background-color: var(--color-cta-darker);
-    color: var(--color-gray-8);
+    background-color: var(--card-theme);
+    color: var(--card-text, --color-gray-8);
     top: 0;
-    right: 0;
-    transform: rotate3D(0, 0, 1, 45deg) translate3d(30%, -25%, 0);
-    padding: var(--spacing-n3) var(--spacing-2);
+    left: 0;
+    height: 110px;
+    width: 100%;
+    transform: translate(50%, -50%) rotateZ(45deg);
+    transform-origin: center center;
+    padding: var(--spacing-2) 0 var(--spacing-n5);
+    width: 100%;
     z-index: 2;
     backface-visibility: hidden;
     letter-spacing: 0.02rem;
